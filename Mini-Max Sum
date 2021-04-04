@@ -1,0 +1,89 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static void miniMaxSum(int[] arr) {
+        
+        long result1=0;
+        long result2=0;
+        long result3=0;
+        long result4=0;
+        long result5=0;
+        long[] dizi = new long[5];
+        
+        for(int i=0; i<arr.length-1; i++){ 
+            result1 += arr[i];
+            dizi[0] = result1;
+        }
+        
+        for(int i=1; i<arr.length; i++){ 
+            result2 += arr[i];
+            dizi[1] = result2;
+        }
+        
+        for(int i=0; i<arr.length; i++){ 
+            result3 += arr[i];
+            
+        }
+        result3 -= arr[1];
+        dizi[2] = result3;
+        
+        for(int i=0; i<arr.length; i++){ 
+            result4 += arr[i];
+
+        }
+        result4 -= arr[2];
+        dizi[3] = result4;        
+        for(int i=0; i<arr.length; i++){ 
+            result5 += arr[i];
+
+        }
+        result5 -= arr[3];
+        dizi[4] = result5;
+                    
+        long result_max = dizi[0];
+        long result_min = dizi[0];
+    
+        for(int i=0; i<dizi.length; i++)
+
+        {
+            if(result_max < dizi[i])
+            {
+                result_max = dizi[i];
+            }
+            
+            if(result_min > dizi[i])
+            {
+                result_min = dizi[i];
+            }
+
+        }
+        
+        System.out.println(result_min + " " + result_max);
+        
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int[] arr = new int[5];
+
+        String[] arrItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < 5; i++) {
+            int arrItem = Integer.parseInt(arrItems[i]);
+            arr[i] = arrItem;
+        }
+
+        miniMaxSum(arr);
+
+        scanner.close();
+    }
+}
